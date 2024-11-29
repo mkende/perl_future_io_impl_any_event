@@ -1,5 +1,9 @@
 Revision history for Perl distribution Future-IO-Impl-AnyEvent
 
+0.02 - 2024-11-30
+
+ - Swictch to using the AE interface to AnyEvent.
+
 0.01 - 2024-11-27
 
  - Initial release

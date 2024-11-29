@@ -9,7 +9,7 @@ use base 'Future::IO::ImplBase';
 use AnyEvent;
 use Future::IO::Impl::AnyEvent::Future;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 __PACKAGE__->APPLY;
 
