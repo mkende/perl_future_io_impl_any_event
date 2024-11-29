@@ -12,7 +12,7 @@ our $VERSION = 0.01;
 
 sub await {
   my ($self) = @_;
-  my $cv = AnyEvent->condvar;
+  my $cv = AE::cv;
   $self->on_ready(sub { $cv->send });
   $cv->recv;
   return $self;
