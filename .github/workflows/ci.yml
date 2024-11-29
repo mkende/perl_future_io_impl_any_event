@@ -18,13 +18,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu,  windows,  macos, ]
+        os: [ ubuntu,  macos, ]
         perl: [ '5.14', '5.38' ]
         exclude:
           # MacOS runners are very expensive, so let’s run only on the latest Perl
           - os: macos
-            perl: '5.14'
-          - os: windows
             perl: '5.14'
 
         # From time to time, Strawberry Perl does not have the latest Perl

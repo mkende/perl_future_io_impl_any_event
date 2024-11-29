@@ -1,10 +1,10 @@
 # DO NOT EDIT! This file is written by perl_setup_dist.
 # If needed, you can add content at the end of the file.
 
-requires 'perl', '5.014';
+requires 'perl', '5.14.0';
 
 on 'configure' => sub {
-  requires 'perl', '5.014';
+  requires 'perl', '5.14.0';
   requires 'ExtUtils::MakeMaker::CPANfile', '0.0.9';
 };
 
