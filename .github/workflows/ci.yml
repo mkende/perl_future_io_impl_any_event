@@ -24,6 +24,8 @@ jobs:
           # MacOS runners are very expensive, so let’s run only on the latest Perl
           - os: macos
             perl: '5.14'
+          - os: windows
+            perl: '5.14'
 
         # From time to time, Strawberry Perl does not have the latest Perl
         # version. So these lines can be uncommented to remove it (and replace
