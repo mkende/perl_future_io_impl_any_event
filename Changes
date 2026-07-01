@@ -1,6 +1,6 @@
 Revision history for Perl distribution Future-IO-Impl-AnyEvent
 
-0.03 - ??
+0.03 - 2026-07-01
 
  - Implement the lower-level `poll` method introduced in Future::IO 0.19, which
    is now used by ImplBase to provide sysread, syswrite, accept and connect. The

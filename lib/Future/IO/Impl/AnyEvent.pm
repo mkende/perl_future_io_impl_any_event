@@ -10,7 +10,7 @@ use AnyEvent;
 use Future::IO::Impl::AnyEvent::Future;
 use IO::Poll qw(POLLIN POLLOUT);
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 __PACKAGE__->APPLY;
 
