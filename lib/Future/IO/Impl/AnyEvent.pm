@@ -8,6 +8,7 @@ use base 'Future::IO::ImplBase';
 
 use AnyEvent;
 use Future::IO::Impl::AnyEvent::Future;
+use IO::Poll qw(POLLIN POLLOUT);
 
 our $VERSION = 0.02;
 
@@ -19,6 +20,30 @@ sub sleep {  ## no critic (ProhibitBuiltinHomonyms)
   my $w;
   $w = AE::timer $sec, 0, sub { undef $w; $f->done };
   $f->on_cancel(sub { undef $w });
+  return $f;
+}
+
+# Since version 0.19, Future::IO::ImplBase implements sysread, syswrite, accept,
+# connect, etc. on top of a lower-level ->poll method, so we must provide it. We
+# still keep ready_for_read and ready_for_write below for compatibility with
+# older versions of Future::IO which used those instead.
+sub poll {
+  my (undef, $fh, $events) = @_;
+  my $f = Future::IO::Impl::AnyEvent::Future->new;
+  my ($rw, $ww);
+  my $done = sub {
+    return if $f->is_ready;
+    undef $rw;
+    undef $ww;
+    $f->done($_[0]);
+  };
+  if ($events & POLLIN) {
+    $rw = AE::io $fh, 0, sub { $done->(POLLIN) };
+  }
+  if ($events & POLLOUT) {
+    $ww = AE::io $fh, 1, sub { $done->(POLLOUT) };
+  }
+  $f->on_cancel(sub { undef $rw; undef $ww });
   return $f;
 }
 
